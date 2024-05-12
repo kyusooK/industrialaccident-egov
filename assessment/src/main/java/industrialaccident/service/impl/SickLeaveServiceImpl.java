@@ -83,4 +83,26 @@ public class SickLeaveServiceImpl
 
         return sickLeave;
     }
+
+    @Override
+    public SickLeave applySalary(ApplySalaryCommand applySalaryCommand) throws Exception {
+        Optional<SickLeave> optionalSickLeave = sickLeaveRepository.findById(
+            applySalaryCommand.getId()
+        );
+
+        if (optionalSickLeave.isPresent()) {
+            SickLeave sickLeave = optionalSickLeave.get();
+
+            sickLeave.setAverageSalary(applySalaryCommand.getAverageSalary());
+            
+            // business Logic....
+            sickLeave.applySalary(applySalaryCommand);
+            sickLeaveRepository.save(sickLeave);
+
+            return sickLeave;
+        } else {
+            throw processException("info.nodata.msg");
+        }
+
+    }
 }

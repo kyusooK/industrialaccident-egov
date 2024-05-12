@@ -58,7 +58,16 @@ public class Compensation {
     public void createCompensation(
         CreateCompensationCommand createCompensationCommand
     ) {
-        //implement business logic here:
+        Compensation compensation = new Compensation();
+
+        compensation.setSickLeaveId(createCompensationCommand.getSickLeaveId());
+        compensation.setAssessmentId(createCompensationCommand.getAssessmentId());
+        compensation.setAccidentId(createCompensationCommand.getAccidentId());
+        compensation.setEmployeeId(createCompensationCommand.getEmployeeId());
+        compensation.setAmount(createCompensationCommand.getAverageSalary());
+        compensation.setStatus("보상처리 접수됨");
+
+        repository().save(compensation);
 
         CompensationCreated compensationCreated = new CompensationCreated(this);
         compensationCreated.publishAfterCommit();

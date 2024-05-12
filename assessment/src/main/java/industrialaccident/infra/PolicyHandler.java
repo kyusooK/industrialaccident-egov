@@ -74,8 +74,12 @@ public class PolicyHandler {
         // implement: Set the SickLeave Id from one of InvestigationApproved event's corresponding property
 
         ).ifPresent(sickLeave->{
+            createSickLeaveBenefitCommand.setAccessmentId(event.getId());
+            createSickLeaveBenefitCommand.setAccidentId(event.getAccidentId());
+            createSickLeaveBenefitCommand.setBusinessCode(event.getBusinessCode());
+            createSickLeaveBenefitCommand.setEmployeeId(event.getEmployeeId());
             
-        //  sickLeave.createSickLeaveBenefit(createSickLeaveBenefitCommand);
+            sickLeave.createSickLeaveBenefit(createSickLeaveBenefitCommand);
         });
 
     }

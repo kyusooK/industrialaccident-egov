@@ -14,4 +14,8 @@ public interface SickLeaveService {
     SickLeave requestSickLeaveBenefit(
         RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand
     ) throws Exception;
+    
+    SickLeave applySalary(
+        ApplySalaryCommand applySalaryCommand
+    ) throws Exception;
 }

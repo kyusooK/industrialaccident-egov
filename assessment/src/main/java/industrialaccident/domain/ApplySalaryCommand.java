@@ -7,5 +7,6 @@ import lombok.Data;
 @Data
 public class ApplySalaryCommand {
 
-    private String averageSalary;
+    private Long id;
+    private Long averageSalary;
 }

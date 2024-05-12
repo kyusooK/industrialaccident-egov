@@ -38,14 +38,19 @@ public class PolicyHandler {
         );
 
         CreateCompensationCommand createCompensationCommand = new CreateCompensationCommand();
-        // implement:  Map command properties from event
 
-        // compensationRepository.findById(
-        // implement: Set the Compensation Id from one of AverageSalaryApplied event's corresponding property
+        compensationRepository.findById(event.getId()
+        
+        ).ifPresent(compensation->{
+            createCompensationCommand.setSickLeaveId(event.getId());
+            createCompensationCommand.setAssessmentId(event.getAccessmentId());
+            createCompensationCommand.setAccidentId(event.getAccidentId());
+            createCompensationCommand.setEmployeeId(event.getEmployeeId());
+            createCompensationCommand.setAverageSalary(event.getAverageSalary());
 
-        // ).ifPresent(compensation->{
-        //  compensation.createCompensation(createCompensationCommand);
-        // });
+            compensation.createCompensation(createCompensationCommand);
+
+        });
 
     }
 }

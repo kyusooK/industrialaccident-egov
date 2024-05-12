@@ -68,4 +68,20 @@ public class SickLeaveController {
             requestSickLeaveBenefitCommand
         );
     }
+
+    @RequestMapping(
+        value = "/sickLeaves/{id}/applysalary",
+        method = RequestMethod.PUT,
+        produces = "application/json;charset=UTF-8"
+    )
+    public SickLeave applySalary(
+        @PathVariable(value = "id") Long id,
+        @RequestBody ApplySalaryCommand applySalaryCommand,
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws Exception {
+        return sickLeaveService.applySalary(
+            applySalaryCommand
+        );
+    }
 }

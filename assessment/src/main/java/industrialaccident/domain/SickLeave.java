@@ -24,7 +24,7 @@ public class SickLeave {
 
     private String employeeId;
 
-    private Float averageSalary;
+    private Long averageSalary;
 
     private Integer period;
 
@@ -54,7 +54,14 @@ public class SickLeave {
     public void createSickLeaveBenefit(
         CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand
     ) {
-        //implement business logic here:
+        SickLeave sickLeave = new SickLeave();
+        sickLeave.setAccessmentId(createSickLeaveBenefitCommand.getAccessmentId());
+        sickLeave.setAccidentId(createSickLeaveBenefitCommand.getAccidentId());
+        sickLeave.setBusinessCode(createSickLeaveBenefitCommand.getBusinessCode());
+        sickLeave.setEmployeeId(createSickLeaveBenefitCommand.getEmployeeId());
+        sickLeave.setStatus("급여처리 생성됨");
+
+        repository().save(sickLeave);
 
         SickLeaveBenefitCreated sickLeaveBenefitCreated = new SickLeaveBenefitCreated(
             this
