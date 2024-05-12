@@ -1,0 +1,130 @@
+server:
+  port: 8088
+
+---
+
+
+keycloak-client:
+  server-url: http://localhost:9090
+  realm: master
+
+spring:
+  config:
+    activate:
+      on-profile: default
+  cloud:
+    gateway:
+      default-filters:
+        - TokenRelay 
+      routes:
+        - id: accident
+          uri: http://localhost:8082
+          predicates:
+            - Path=/accidents/**,  /myClaims/**
+        - id: assessment
+          uri: http://localhost:8083
+          predicates:
+            - Path=/assessments/**, /sickLeaves/**,  
+        - id: compensation
+          uri: http://localhost:8084
+          predicates:
+            - Path=/compensations/**,  
+        - id: statistics
+          uri: http://localhost:8085
+          predicates:
+            - Path=/statistics/**,  /dataAnalyses/**
+        - id: notification
+          uri: http://localhost:8086
+          predicates:
+            - Path=/notifications/**,  
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOriginPatterns:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: "<client-id>"
+            client-secret: 
+            redirect-uri: "gateway-path/login/oauth2/code/client-name"
+            authorization-grant-type: authorization_code
+            scope: openid
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/certs
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: docker
+  cloud:
+    gateway:
+      routes:
+        - id: accident
+          uri: http://accident:8080
+          predicates:
+            - Path=/accidents/** /myClaims/**
+        - id: assessment
+          uri: http://assessment:8080
+          predicates:
+            - Path=/assessments/**/sickLeaves/** 
+        - id: compensation
+          uri: http://compensation:8080
+          predicates:
+            - Path=/compensations/** 
+        - id: statistics
+          uri: http://statistics:8080
+          predicates:
+            - Path=/statistics/** /dataAnalyses/**
+        - id: notification
+          uri: http://notification:8080
+          predicates:
+            - Path=/notifications/** 
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: "<client-id>"
+            client-secret: 
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
+            authorization-grant-type: authorization_code
+            scope: openid
+      resourceserver:
+        jwt:
+          jwk-set-uri: ${keycloak-client.server-url}/realms/${keycloak-client.realm}/protocol/openid-connect/certs
+
+server:
+  port: 8080
