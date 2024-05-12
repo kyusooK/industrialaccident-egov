@@ -44,8 +44,8 @@ logging:
     org.springframework.cloud: debug
 
 api:
-  url:
-    assessment: localhost:8083
+  url: 
+    sickLeave: localhost:8083 
 
 
 server:
@@ -90,7 +90,7 @@ spring:
           contentType: application/json
 
 api:
-  url:
-    assessment:8080
+  url: 
+    sickLeave: assessment:8083 
 
 

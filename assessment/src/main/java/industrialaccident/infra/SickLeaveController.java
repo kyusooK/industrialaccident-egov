@@ -52,4 +52,20 @@ public class SickLeaveController {
         // Delete a sickLeave via SickLeaveService
         sickLeaveService.deleteSickLeave(id);
     }
+
+    @RequestMapping(
+        value = "/sickLeaves/{id}/requestsickleavebenefit",
+        method = RequestMethod.PUT,
+        produces = "application/json;charset=UTF-8"
+    )
+    public SickLeave requestSickLeaveBenefit(
+        @PathVariable(value = "id") Long id,
+        @RequestBody RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand,
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws Exception {
+        return sickLeaveService.requestSickLeaveBenefit(
+            requestSickLeaveBenefitCommand
+        );
+    }
 }

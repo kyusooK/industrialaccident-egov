@@ -9,7 +9,7 @@ import lombok.*;
 //<<< DDD / Domain Event
 @Data
 @ToString
-public class SickLeaveBenefitApplieda extends AbstractEvent {
+public class SickLeaveBenefitApplied extends AbstractEvent {
 
     private Long id;
     private String businessCode;
@@ -22,11 +22,11 @@ public class SickLeaveBenefitApplieda extends AbstractEvent {
     private String status;
     private Date applyDt;
 
-    public SickLeaveBenefitApplieda(Accident aggregate) {
+    public SickLeaveBenefitApplied(Accident aggregate) {
         super(aggregate);
     }
 
-    public SickLeaveBenefitApplieda() {
+    public SickLeaveBenefitApplied() {
         super();
     }
 }

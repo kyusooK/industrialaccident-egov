@@ -79,12 +79,16 @@ public class AssessmentServiceImpl
         */
 
         Optional<Assessment> optionalAssessment = assessmentRepository.findById(
-            updateInvestigationCommand.getAssessmentId()
+            updateInvestigationCommand.getId()
         );
 
         if (optionalAssessment.isPresent()) {
             Assessment assessment = optionalAssessment.get();
 
+            assessment.setAssessorId(updateInvestigationCommand.getAssessorId());
+            assessment.setResults(updateInvestigationCommand.getResults());
+            assessment.setComments(updateInvestigationCommand.getComments());
+            
             // business Logic....
             assessment.updateInvestigation(updateInvestigationCommand);
             assessmentRepository.save(assessment);

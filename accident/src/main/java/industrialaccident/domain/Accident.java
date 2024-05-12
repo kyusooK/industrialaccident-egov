@@ -1,6 +1,7 @@
 package industrialaccident.domain;
 
 import industrialaccident.AccidentApplication;
+import industrialaccident.domain.MedicalBenefitApplied;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -36,7 +37,12 @@ public class Accident {
     private Date applyDt;
 
     @PostPersist
-    public void onPostPersist() {}
+    public void onPostPersist() {
+        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(
+            this
+        );
+        medicalBenefitApplied.publishAfterCommit();
+    }
 
     public static AccidentRepository repository() {
         AccidentRepository accidentRepository = AccidentApplication.applicationContext.getBean(
@@ -50,39 +56,34 @@ public class Accident {
     }
 
     //<<< Clean Arch / Port Method
-    public void applyMedicalBenefit(
-        ApplyMedicalBenefitCommand applyMedicalBenefitCommand
-    ) {
-        //implement business logic here:
-
-        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(
-            this
-        );
+    public void applyMedicalBenefit(ApplyMedicalBenefitCommand applyMedicalBenefitCommand) {
+        
+        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(this);
         medicalBenefitApplied.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
     public void applySickLeaveBenefit(
         ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
     ) {
         //implement business logic here:
 
-        SickLeaveBenefitApplieda sickLeaveBenefitApplieda = new SickLeaveBenefitApplieda(
+        SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(
             this
         );
-        sickLeaveBenefitApplieda.publishAfterCommit();
+        sickLeaveBenefitApplied.publishAfterCommit();
 
-        //Following code causes dependency to external APIs
-        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
-        industrialaccident.external.SickLeave sickLeave = new industrialaccident.external.SickLeave();
-        // mappings goes here
+        industrialaccident.external.RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand = new industrialaccident.external.RequestSickLeaveBenefitCommand();
+        
+        requestSickLeaveBenefitCommand.setId(getId());
+        requestSickLeaveBenefitCommand.setBusinessCode(getBusinessCode());
+        requestSickLeaveBenefitCommand.setEmployeeId(getEmployeeId());
+        requestSickLeaveBenefitCommand.setPeriod(getPeriod());
+
         AccidentApplication.applicationContext
             .getBean(industrialaccident.external.SickLeaveService.class)
-            .requestSickLeaveBenefit(sickLeave);
+            .requestSickLeaveBenefit(getId(), requestSickLeaveBenefitCommand);
     }
-    //>>> Clean Arch / Port Method
 
 }
 //>>> DDD / Aggregate Root

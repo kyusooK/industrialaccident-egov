@@ -10,7 +10,6 @@ import lombok.Data;
 @Entity
 @Table(name = "SickLeave_table")
 @Data
-//<<< DDD / Aggregate Root
 public class SickLeave {
 
     @Id
@@ -43,7 +42,6 @@ public class SickLeave {
         return sickLeaveRepository;
     }
 
-    //<<< Clean Arch / Port Method
     public void applySalary(ApplySalaryCommand applySalaryCommand) {
         //implement business logic here:
 
@@ -53,8 +51,6 @@ public class SickLeave {
         averageSalaryApplied.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
     public void createSickLeaveBenefit(
         CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand
     ) {
@@ -66,8 +62,6 @@ public class SickLeave {
         sickLeaveBenefitCreated.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
     public void requestSickLeaveBenefit(
         RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand
     ) {
@@ -78,7 +72,5 @@ public class SickLeave {
         );
         sickLeaveBenefitRequested.publishAfterCommit();
     }
-    //>>> Clean Arch / Port Method
 
 }
-//>>> DDD / Aggregate Root

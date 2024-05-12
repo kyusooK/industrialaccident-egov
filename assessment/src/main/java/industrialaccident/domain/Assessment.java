@@ -51,31 +51,40 @@ public class Assessment {
         return assessmentRepository;
     }
 
-    //<<< Clean Arch / Port Method
     public void createInvestigation(
         CreateInvestigationCommand createInvestigationCommand
     ) {
-        //implement business logic here:
+        Assessment assessment = new Assessment();
+        
+        assessment.setAccidentId(createInvestigationCommand.getAccidentId());
+        assessment.setBusinessCode(createInvestigationCommand.getBusinessCode());
+        assessment.setEmployeeId(createInvestigationCommand.getEmployeeId());
+        assessment.setHospitalCode(createInvestigationCommand.getHospitalCode());
+        assessment.setDoctorNote(createInvestigationCommand.getDoctorNote());
+        assessment.setComments(createInvestigationCommand.getAccidentType());
+        
+        repository().save(assessment);
 
-        InvestigationCreated investigationCreated = new InvestigationCreated(
-            this
-        );
+        InvestigationCreated investigationCreated = new InvestigationCreated(this);
         investigationCreated.publishAfterCommit();
     }
 
-    //>>> Clean Arch / Port Method
-    //<<< Clean Arch / Port Method
     public void updateInvestigation(
         UpdateInvestigationCommand updateInvestigationCommand
     ) {
         //implement business logic here:
 
-        InvestigationApproved investigationApproved = new InvestigationApproved(
-            this
-        );
-        investigationApproved.publishAfterCommit();
+        String results = updateInvestigationCommand.getResults();
+        if ("승인".equals(results)) {
+            InvestigationApproved investigationApproved = new InvestigationApproved(this);
+            investigationApproved.publishAfterCommit();
+        } else if ("불승인".equals(results)) {
+            InvestigationDisapproved investigationDisapproved = new InvestigationDisapproved(this);
+            investigationDisapproved.publishAfterCommit();
+        }
+
+        
     }
-    //>>> Clean Arch / Port Method
 
 }
 //>>> DDD / Aggregate Root
