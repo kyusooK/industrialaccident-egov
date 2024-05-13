@@ -144,16 +144,13 @@ function EgovNoticeList(props) {
                             <div className="head">
 
                                 <span>Id</span>
-                                <span>BusinessCode</span>
-                                <span>EmployeeId</span>
-                                <span>Name</span>
-                                <span>HospitalCode</span>
-                                <span>Period</span>
-                                <span>DoctorNote</span>
-                                <span>AccidentType</span>
-                                <span>Status</span>
-                                <span>ApplyDt</span>
-                            
+                                <span>사업코드</span>
+                                <span>고용인ID</span>
+                                <span>병원코드</span>
+                                <span>기간</span>
+                                <span>의사 소견서</span>
+                                <span>산재유형</span>
+                                <span>상태</span>
                             </div>
                             <div className="result">
                                 {listTag}

@@ -84,7 +84,7 @@ function EgovNoticeEdit(props) {
             <div className="location">
                 <ul>
                     <li><Link to={URL.MAIN} className="home">Home</Link></li>
-                    <li><Link to="/assessment/sickLeaves">SickLeave</Link></li>
+                    <li><Link to="/assessment/sickLeaves">휴업급여</Link></li>
                     <li>{masterBoard && masterBoard.bbsNm}</li>
                 </ul>
             </div>
@@ -122,7 +122,7 @@ function EgovNoticeEdit(props) {
                         <div className="board_view2">
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">AccessmentId</label>
+                                    <label htmlFor="nttSj">요양급여ID</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="accessmentId" name="accessmentId" type="text"
@@ -132,7 +132,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">AccidentId</label>
+                                    <label htmlFor="nttSj">산재ID</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="accidentId" name="accidentId" type="text"
@@ -142,7 +142,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">BusinessCode</label>
+                                    <label htmlFor="nttSj">사업코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="businessCode" name="businessCode" type="text"
@@ -152,7 +152,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">EmployeeId</label>
+                                    <label htmlFor="nttSj">고용인ID</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="employeeId" name="employeeId" type="text"

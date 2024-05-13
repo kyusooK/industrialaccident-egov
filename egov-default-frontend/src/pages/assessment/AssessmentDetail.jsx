@@ -137,35 +137,35 @@ function EgovNoticeDetail(props) {
                                         <dd>{id}</dd>
                                     </dl>
                                     <dl>
-                                        <dt>AccidentId</dt>
+                                        <dt>산재ID</dt>
                                         <dd>{boardDetail && boardDetail.accidentId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>BusinessCode</dt>
+                                        <dt>사업코드</dt>
                                         <dd>{boardDetail && boardDetail.businessCode }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>EmployeeId</dt>
+                                        <dt>고용인ID</dt>
                                         <dd>{boardDetail && boardDetail.employeeId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>AssessorId</dt>
+                                        <dt>조사관ID</dt>
                                         <dd>{boardDetail && boardDetail.assessorId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>HospitalCode</dt>
+                                        <dt>병원코드</dt>
                                         <dd>{boardDetail && boardDetail.hospitalCode }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>DoctorNote</dt>
+                                        <dt>의사소견서</dt>
                                         <dd>{boardDetail && boardDetail.doctorNote }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>Results</dt>
+                                        <dt>결과</dt>
                                         <dd>{boardDetail && boardDetail.results }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>Comments</dt>
+                                        <dt>의견</dt>
                                         <dd>{boardDetail && boardDetail.comments }</dd>
                                     </dl>
                                 </div>

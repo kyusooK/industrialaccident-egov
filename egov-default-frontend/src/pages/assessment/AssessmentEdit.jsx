@@ -85,7 +85,7 @@ function EgovNoticeEdit(props) {
             <div className="location">
                 <ul>
                     <li><Link to={URL.MAIN} className="home">Home</Link></li>
-                    <li><Link to="/assessment/assessments">Assessment</Link></li>
+                    <li><Link to="/assessment/assessments">요양급여</Link></li>
                     <li>{masterBoard && masterBoard.bbsNm}</li>
                 </ul>
             </div>
@@ -115,7 +115,7 @@ function EgovNoticeEdit(props) {
                         {/* <!-- 본문 --> */}
 
                         <div className="top_tit">
-                            <h1 className="tit_1">Assessment</h1>
+                            <h1 className="tit_1">요양급여</h1>
                         </div>
                         
                         <h2 className="tit_2">{masterBoard && masterBoard.bbsNm} {modeInfo.modeTitle}</h2>
@@ -133,7 +133,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">AccidentId</label>
+                                    <label htmlFor="nttSj">산재ID</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="accidentId" name="accidentId" type="text"
@@ -143,7 +143,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">BusinessCode</label>
+                                    <label htmlFor="nttSj">사업코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="businessCode" name="businessCode" type="text"
@@ -153,7 +153,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">EmployeeId</label>
+                                    <label htmlFor="nttSj">고용인ID</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="employeeId" name="employeeId" type="text"
@@ -163,7 +163,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">AssessorId</label>
+                                    <label htmlFor="nttSj">조사관ID</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="assessorId" name="assessorId" type="text"
@@ -173,7 +173,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">HospitalCode</label>
+                                    <label htmlFor="nttSj">병원코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="hospitalCode" name="hospitalCode" type="text"
@@ -183,7 +183,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">DoctorNote</label>
+                                    <label htmlFor="nttSj">의사 소견서</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="doctorNote" name="doctorNote" type="text"
@@ -193,7 +193,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">Comments</label>
+                                    <label htmlFor="nttSj">의견</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="comments" name="comments" type="text"

@@ -129,31 +129,31 @@ function EgovNoticeDetail(props) {
                                         <dd>{id}</dd>
                                     </dl>
                                     <dl>
-                                        <dt>BusinessCode</dt>
+                                        <dt>사업코드</dt>
                                         <dd>{boardDetail && boardDetail.businessCode }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>EmployeeId</dt>
+                                        <dt>고용인ID</dt>
                                         <dd>{boardDetail && boardDetail.employeeId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>HospitalCode</dt>
+                                        <dt>병원코드</dt>
                                         <dd>{boardDetail && boardDetail.hospitalCode }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>Period</dt>
+                                        <dt>기간</dt>
                                         <dd>{boardDetail && boardDetail.period }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>DoctorNote</dt>
+                                        <dt>의사 소견서</dt>
                                         <dd>{boardDetail && boardDetail.doctorNote }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>AccidentType</dt>
+                                        <dt>산재유형</dt>
                                         <dd>{boardDetail && boardDetail.accidentType }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>Status</dt>
+                                        <dt>상태</dt>
                                         <dd>{boardDetail && boardDetail.status }</dd>
                                     </dl>
                                 </div>
