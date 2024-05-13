@@ -58,14 +58,21 @@ public class Accident {
     //<<< Clean Arch / Port Method
     public void applyMedicalBenefit(ApplyMedicalBenefitCommand applyMedicalBenefitCommand) {
         
-        MedicalBenefitApplied medicalBenefitApplied = new MedicalBenefitApplied(this);
-        medicalBenefitApplied.publishAfterCommit();
+        this.setBusinessCode(applyMedicalBenefitCommand.getBusinessCode());
+        this.setEmployeeId(applyMedicalBenefitCommand.getEmployeeId());
+        this.setHospitalCode(applyMedicalBenefitCommand.getHospitalCode());
+        this.setDoctorNote(applyMedicalBenefitCommand.getDoctorNote());
+        this.setAccidentType(applyMedicalBenefitCommand.getAccidentType());
+        this.setStatus("요양급여신청됨");
     }
 
     public void applySickLeaveBenefit(
         ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
     ) {
-        //implement business logic here:
+        this.setBusinessCode(applySickLeaveBenefitCommand.getBusinessCode());
+        this.setEmployeeId(applySickLeaveBenefitCommand.getEmployeeId());
+        this.setPeriod(applySickLeaveBenefitCommand.getPeriod());
+        this.setStatus("휴업급여 신칭됨");
 
         SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(
             this

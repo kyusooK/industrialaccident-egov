@@ -1,6 +1,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { Chart } from "react-google-charts";
 
 import * as EgovNet from 'api/egovFetch'
 import { NOTICE_BBS_ID } from 'config'
@@ -10,6 +11,26 @@ import EgovPaging from 'components/EgovPaging'
 import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavInform'
 
 import { itemIdxByPage } from 'utils/calc'
+
+const data = [
+    ["Task", "Hours per Day"],
+    ["Work", 11],
+    ["Eat", 2],
+    ["Commute", 2],
+    ["Watch TV", 2],
+    ["Sleep", 7],
+  ];
+export function App() {
+return (
+    <Chart
+    chartType="PieChart"
+    data={data}
+    options={options}
+    width={"100%"}
+    height={"400px"}
+    />
+);
+}
 
 function EgovNoticeList(props) {
 

@@ -70,18 +70,8 @@ public class SickLeaveServiceImpl
     public SickLeave requestSickLeaveBenefit(RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand) throws Exception {
 
         SickLeave sickLeave = new SickLeave();
-        sickLeave.setAccessmentId(requestSickLeaveBenefitCommand.getId());
-        sickLeave.setAccidentId(requestSickLeaveBenefitCommand.getId());
-        sickLeave.setBusinessCode(requestSickLeaveBenefitCommand.getBusinessCode());
-        sickLeave.setEmployeeId(requestSickLeaveBenefitCommand.getEmployeeId());
-        sickLeave.setPeriod(requestSickLeaveBenefitCommand.getPeriod());
-        sickLeave.setStatus("휴업급여 요청됨");
-
-        sickLeaveRepository.save(sickLeave);
-
         sickLeave.requestSickLeaveBenefit(requestSickLeaveBenefitCommand);
-
-        return sickLeave;
+        return sickLeaveRepository.save(sickLeave);
     }
 
     @Override
@@ -92,14 +82,10 @@ public class SickLeaveServiceImpl
 
         if (optionalSickLeave.isPresent()) {
             SickLeave sickLeave = optionalSickLeave.get();
-
-            sickLeave.setAverageSalary(applySalaryCommand.getAverageSalary());
-            
-            // business Logic....
             sickLeave.applySalary(applySalaryCommand);
-            sickLeaveRepository.save(sickLeave);
+            
+            return sickLeaveRepository.save(sickLeave);
 
-            return sickLeave;
         } else {
             throw processException("info.nodata.msg");
         }

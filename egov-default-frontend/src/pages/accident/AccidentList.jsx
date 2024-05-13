@@ -1,4 +1,3 @@
-
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -29,7 +28,7 @@ function EgovNoticeList(props) {
     const retrieveList = useCallback((searchCondition) => {
         console.groupCollapsed("EgovNoticeList.retrieveList()");
 
-        const retrieveListURL = '/accidents'+EgovNet.getQueryString(searchCondition);;
+        const retrieveListURL = '/accidents';
         const requestOptions = {
             method: "GET",
             headers: {
@@ -40,40 +39,29 @@ function EgovNoticeList(props) {
         EgovNet.requestFetch(retrieveListURL,
             requestOptions,
             (resp) => {
-
                 let mutListTag = [];
-                mutListTag.push(<p className="no_data" key="0">검색된 결과가 없습니다.</p>); // 게시판 목록 초기값
-                
-                const resultCnt = parseInt(resp.page.totalElements);
-                const currentPageNo = resp.page.number;
-                const pageSize = resp.page.size;
-
-                // 리스트 항목 구성
-                resp._embedded.accidents.forEach(function (item, index) {
-                    if (index === 0) mutListTag = []; // 목록 초기화
-                    const listIdx = itemIdxByPage(resultCnt , currentPageNo, pageSize, index);
-
+                for(let i = 0; i< resp.length; i++){
+                    if(resp.length == 0) mutListTag =[];
                     mutListTag.push(
                         <Link
                             to={{pathname: "/accident/AccidentDetail"}}
                             state={{
-                                id: item._links.self.href.split('/').pop(),
-                                searchCondition: searchCondition
-}}                            key={listIdx}
+                                id: resp[i].id,
+                                searchCondition: searchCondition}}                            
                             className="list_item">
-                            <div>{item._links.self.href.split('/').pop()}</div>
-                            <div>{item.businessCode}</div>    
-                            <div>{item.employeeId}</div>    
-                            <div>{item.name}</div>    
-                            <div>{item.hospitalCode}</div>    
-                            <div>{item.period}</div>    
-                            <div>{item.doctorNote}</div>    
-                            <div>{item.accidentType}</div>    
-                            <div>{item.status}</div>    
-                            <div>{item.applyDt}</div>    
-                        </Link>
+                            <div>{i}</div>
+                            <div>{resp[i].businessCode}</div>
+                            <div>{resp[i].employeeId}</div>
+                            <div>{resp[i].name}</div>
+                            <div>{resp[i].hospitalCode}</div>
+                            <div>{resp[i].period}</div>
+                            <div>{resp[i].doctorNote}</div>
+                            <div>{resp[i].accidentType}</div>
+                            <div>{resp[i].status}</div>
+                            <div>{resp[i].applyDt}</div>
+                       </Link>
                     );
-                });
+                };
                 setListTag(mutListTag);
             },
             function (resp) {

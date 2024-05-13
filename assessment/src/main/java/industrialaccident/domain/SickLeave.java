@@ -43,40 +43,37 @@ public class SickLeave {
     }
 
     public void applySalary(ApplySalaryCommand applySalaryCommand) {
-        //implement business logic here:
+        
+        this.setAverageSalary(applySalaryCommand.getAverageSalary());
 
-        AverageSalaryApplied averageSalaryApplied = new AverageSalaryApplied(
-            this
-        );
+        AverageSalaryApplied averageSalaryApplied = new AverageSalaryApplied(this);
         averageSalaryApplied.publishAfterCommit();
     }
 
     public void createSickLeaveBenefit(
-        CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand
-    ) {
-        SickLeave sickLeave = new SickLeave();
-        sickLeave.setAccessmentId(createSickLeaveBenefitCommand.getAccessmentId());
-        sickLeave.setAccidentId(createSickLeaveBenefitCommand.getAccidentId());
-        sickLeave.setBusinessCode(createSickLeaveBenefitCommand.getBusinessCode());
-        sickLeave.setEmployeeId(createSickLeaveBenefitCommand.getEmployeeId());
-        sickLeave.setStatus("급여처리 생성됨");
+        CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand) {
+        
+        this.setAccessmentId(createSickLeaveBenefitCommand.getAccessmentId());
+        this.setAccidentId(createSickLeaveBenefitCommand.getAccidentId());
+        this.setBusinessCode(createSickLeaveBenefitCommand.getBusinessCode());
+        this.setEmployeeId(createSickLeaveBenefitCommand.getEmployeeId());
+        this.setStatus("급여처리 생성됨");
 
-        repository().save(sickLeave);
-
-        SickLeaveBenefitCreated sickLeaveBenefitCreated = new SickLeaveBenefitCreated(
-            this
-        );
+        SickLeaveBenefitCreated sickLeaveBenefitCreated = new SickLeaveBenefitCreated(this);
         sickLeaveBenefitCreated.publishAfterCommit();
     }
 
     public void requestSickLeaveBenefit(
-        RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand
-    ) {
-        //implement business logic here:
+        RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand) {
 
-        SickLeaveBenefitRequested sickLeaveBenefitRequested = new SickLeaveBenefitRequested(
-            this
-        );
+        this.setAccessmentId(requestSickLeaveBenefitCommand.getId());
+        this.setAccidentId(requestSickLeaveBenefitCommand.getId());
+        this.setBusinessCode(requestSickLeaveBenefitCommand.getBusinessCode());
+        this.setEmployeeId(requestSickLeaveBenefitCommand.getEmployeeId());
+        this.setPeriod(requestSickLeaveBenefitCommand.getPeriod());
+        this.setStatus("휴업급여 요청됨");
+
+        SickLeaveBenefitRequested sickLeaveBenefitRequested = new SickLeaveBenefitRequested(this);
         sickLeaveBenefitRequested.publishAfterCommit();
     }
 

@@ -69,31 +69,15 @@ public class AssessmentServiceImpl
     public Assessment updateInvestigation(
         UpdateInvestigationCommand updateInvestigationCommand
     ) throws Exception {
-        // You can implement logic here, or call the domain method of the Assessment.
-
-        /** Option 1-1:  implement logic here     
-            Assessment assessment = new Assessment();
-            assessment.setUserId(event.getUserId());
-
-            assessmentRepository.save(assessment);   
-        */
 
         Optional<Assessment> optionalAssessment = assessmentRepository.findById(
-            updateInvestigationCommand.getId()
+            updateInvestigationCommand.getAssessmentId()
         );
 
         if (optionalAssessment.isPresent()) {
             Assessment assessment = optionalAssessment.get();
-
-            assessment.setAssessorId(updateInvestigationCommand.getAssessorId());
-            assessment.setResults(updateInvestigationCommand.getResults());
-            assessment.setComments(updateInvestigationCommand.getComments());
-            
-            // business Logic....
             assessment.updateInvestigation(updateInvestigationCommand);
-            assessmentRepository.save(assessment);
-
-            return assessment;
+            return assessmentRepository.save(assessment);
         } else {
             throw processException("info.nodata.msg");
         }

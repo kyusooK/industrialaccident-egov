@@ -70,14 +70,7 @@ public class AccidentServiceImpl
         ApplyMedicalBenefitCommand applyMedicalBenefitCommand
     ) throws Exception {
         Accident accident = new Accident();
-
-        accident.setBusinessCode(applyMedicalBenefitCommand.getBusinessCode());
-        accident.setEmployeeId(applyMedicalBenefitCommand.getEmployeeId());
-        accident.setHospitalCode(applyMedicalBenefitCommand.getHospitalCode());
-        accident.setDoctorNote(applyMedicalBenefitCommand.getDoctorNote());
-        accident.setAccidentType(applyMedicalBenefitCommand.getAccidentType());
-        accident.setStatus("요양급여신청됨");
-
+        accident.applyMedicalBenefit(applyMedicalBenefitCommand);
         accidentRepository.save(accident);
 
         return accident;
@@ -94,9 +87,6 @@ public class AccidentServiceImpl
 
         if (optionalAccident.isPresent()) {
             Accident accident = optionalAccident.get();
-
-            accident.setPeriod(applySickLeaveBenefitCommand.getPeriod());
-            accident.setStatus("휴업급여 신칭됨");
             accident.applySickLeaveBenefit(applySickLeaveBenefitCommand);
             accidentRepository.save(accident);
 

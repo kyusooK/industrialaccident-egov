@@ -53,17 +53,14 @@ public class Assessment {
 
     public void createInvestigation(
         CreateInvestigationCommand createInvestigationCommand
-    ) {
-        Assessment assessment = new Assessment();
-        
-        assessment.setAccidentId(createInvestigationCommand.getAccidentId());
-        assessment.setBusinessCode(createInvestigationCommand.getBusinessCode());
-        assessment.setEmployeeId(createInvestigationCommand.getEmployeeId());
-        assessment.setHospitalCode(createInvestigationCommand.getHospitalCode());
-        assessment.setDoctorNote(createInvestigationCommand.getDoctorNote());
-        assessment.setComments(createInvestigationCommand.getAccidentType());
-        
-        repository().save(assessment);
+    ) { 
+        this.setAccidentId(createInvestigationCommand.getAccidentId());
+        this.setBusinessCode(createInvestigationCommand.getBusinessCode());
+        this.setEmployeeId(createInvestigationCommand.getEmployeeId());
+        this.setHospitalCode(createInvestigationCommand.getHospitalCode());
+        this.setDoctorNote(createInvestigationCommand.getDoctorNote());
+        this.setComments(createInvestigationCommand.getAccidentType());
+        this.setResults("사실조사 생성됨");
 
         InvestigationCreated investigationCreated = new InvestigationCreated(this);
         investigationCreated.publishAfterCommit();
@@ -73,15 +70,12 @@ public class Assessment {
         UpdateInvestigationCommand updateInvestigationCommand
     ) {
         //implement business logic here:
+        this.setAssessorId(updateInvestigationCommand.getAssessorId());
+        this.setResults("사실조사 승인됨");
+        this.setComments(updateInvestigationCommand.getComments());
 
-        String results = updateInvestigationCommand.getResults();
-        if ("승인".equals(results)) {
-            InvestigationApproved investigationApproved = new InvestigationApproved(this);
-            investigationApproved.publishAfterCommit();
-        } else if ("불승인".equals(results)) {
-            InvestigationDisapproved investigationDisapproved = new InvestigationDisapproved(this);
-            investigationDisapproved.publishAfterCommit();
-        }
+        InvestigationApproved investigationApproved = new InvestigationApproved(this);
+        investigationApproved.publishAfterCommit();
 
         
     }
