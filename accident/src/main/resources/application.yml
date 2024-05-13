@@ -6,7 +6,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:9090/realms/master/protocol/openid-connect/certs
+          jwk-set-uri: https://9090-kyusook-industrialaccid-aj9l6bkkryp.ws-us110.gitpod.io/realms/master/protocol/openid-connect/certs
   jpa:
     properties:
       hibernate:
