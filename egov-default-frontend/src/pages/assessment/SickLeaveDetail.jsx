@@ -13,7 +13,6 @@ import axios from 'axios';
 
 import * as EgovNet from 'api/egovFetch'
 import { NOTICE_BBS_ID } from 'config'
-import CODE from 'constants/code'
 import URL from 'constants/url'
 
 import EgovAttachFile from 'components/EgovAttachFile'
@@ -32,16 +31,13 @@ function EgovNoticeDetail(props) {
     const searchCondition = location.state.searchCondition;
 
     const [applySalaryopen, setApplySalaryOpen] = useState(false);
-    const [createSickLeaveBenefitopen, setCreateSickLeaveBenefitOpen] = useState(false);
     const [requestSickLeaveBenefitopen, setRequestSickLeaveBenefitOpen] = useState(false);
     const condition = true; 
 
     const [entity, setEntity] = useState("");
 
     const [masterBoard, setMasterBoard] = useState({});
-    const [user, setUser] = useState({});
     const [boardDetail, setBoardDetail] = useState({});
-    const [boardAttachFiles, setBoardAttachFiles] = useState();
 
     const retrieveDetail = () => {
         const retrieveDetailURL = `/sickLeaves/${id}`;
@@ -84,19 +80,6 @@ function EgovNoticeDetail(props) {
                 navigate({pathname: URL.ERROR}, {state: {msg: resp.resultMessage}});
             }else{
                 setApplySalaryOpen(false);
-                fetchSickLeave(id);
-            }
-        });
-    }
-    function createSickLeaveBenefit(){
-
-        axios.put(`/sickLeaves/${id}/createsickleavebenefit`, {id: entity }) 
-        .then(response => {
-            const resp = response.data
-            if(!resp){
-                navigate({pathname: URL.ERROR}, {state: {msg: resp.resultMessage}});
-            }else{
-                setCreateSickLeaveBenefitOpen(false);
                 fetchSickLeave(id);
             }
         });
@@ -178,10 +161,6 @@ function EgovNoticeDetail(props) {
                                         <dt>Status</dt>
                                         <dd>{boardDetail && boardDetail.status }</dd>
                                     </dl>
-                                    <dl>
-                                        <dt>Date</dt>
-                                        <dd>{boardDetail && boardDetail.date }</dd>
-                                    </dl>
                                 </div>
                             </div>
                             <div className="board_btn_area">
@@ -194,14 +173,6 @@ function EgovNoticeDetail(props) {
                                             }
                                         }}>
                                             평균임금 적용
-                                        </button>
-                                        <button className="btn btn_blue_h46 w_100"
-                                         onClick={() => {
-                                            if (condition) {  
-                                            setCreateSickLeaveBenefitOpen(true);
-                                            }
-                                        }}>
-                                            급여처리 생성
                                         </button>
                                         <button className="btn btn_blue_h46 w_100"
                                          onClick={() => {
@@ -247,31 +218,6 @@ function EgovNoticeDetail(props) {
                                     </button>
                                     <button onClick={applySalary} className="btn btn_blue_h46 w_100">
                                     평균임금 적용
-                                    </button>
-                                </DialogActions>
-                            </Dialog>
-                        </div>
-                        <div>
-                            <Dialog open={createSickLeaveBenefitopen} onClose={() => setCreateSickLeaveBenefitOpen(false)}>
-                                <DialogTitle>급여처리 생성</DialogTitle>
-                                <DialogContent>
-                                    <TextField 
-                                        autoFocus
-                                        margin="dense"
-                                        id=""
-                                        label=""
-                                        type="text"
-                                        fullWidth
-                                        value={entity}
-                                        onChange={(e) => setEntity(e.target.value)}
-                                    />
-                                </DialogContent>
-                                <DialogActions>
-                                    <button onClick={() => setCreateSickLeaveBenefitOpen(false)} className="btn btn_blue_h46 w_100">
-                                        취소
-                                    </button>
-                                    <button onClick={createSickLeaveBenefit} className="btn btn_blue_h46 w_100">
-                                    급여처리 생성
                                     </button>
                                 </DialogActions>
                             </Dialog>

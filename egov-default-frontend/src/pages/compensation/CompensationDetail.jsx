@@ -161,10 +161,6 @@ function EgovNoticeDetail(props) {
                                         <dd>{boardDetail && boardDetail.method }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>Date</dt>
-                                        <dd>{boardDetail && boardDetail.date }</dd>
-                                    </dl>
-                                    <dl>
                                         <dt>Status</dt>
                                         <dd>{boardDetail && boardDetail.status }</dd>
                                     </dl>

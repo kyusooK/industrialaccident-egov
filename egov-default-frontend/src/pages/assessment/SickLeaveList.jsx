@@ -44,12 +44,12 @@ function EgovNoticeList(props) {
                     if(resp.length == 0) mutListTag =[];
                     mutListTag.push(
                         <Link
-                            to={{pathname: "/sickLeave/SickLeaveDetail"}}
+                            to={{pathname: "/assessment/SickLeaveDetail"}}
                             state={{
                                 id: resp[i].id,
                                 searchCondition: searchCondition}}                            
                             className="list_item">
-                            <div>{i}</div>
+                            <div>{resp[i].id}</div>
                             <div>{resp[i].accessmentId}</div>
                             <div>{resp[i].accidentId}</div>
                             <div>{resp[i].businessCode}</div>
@@ -57,7 +57,6 @@ function EgovNoticeList(props) {
                             <div>{resp[i].averageSalary}</div>
                             <div>{resp[i].period}</div>
                             <div>{resp[i].status}</div>
-                            <div>{resp[i].date}</div>
                        </Link>
                     );
                 };
@@ -152,8 +151,6 @@ function EgovNoticeList(props) {
                                 <span>AverageSalary</span>
                                 <span>Period</span>
                                 <span>Status</span>
-                                <span>Date</span>
-                            
                             </div>
                             <div className="result">
                                 {listTag}

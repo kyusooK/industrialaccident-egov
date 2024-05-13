@@ -49,16 +49,14 @@ function EgovNoticeList(props) {
                                 id: resp[i].id,
                                 searchCondition: searchCondition}}                            
                             className="list_item">
-                            <div>{i}</div>
+                            <div>{resp[i].id}</div>
                             <div>{resp[i].businessCode}</div>
                             <div>{resp[i].employeeId}</div>
-                            <div>{resp[i].name}</div>
                             <div>{resp[i].hospitalCode}</div>
                             <div>{resp[i].period}</div>
                             <div>{resp[i].doctorNote}</div>
                             <div>{resp[i].accidentType}</div>
                             <div>{resp[i].status}</div>
-                            <div>{resp[i].applyDt}</div>
                        </Link>
                     );
                 };

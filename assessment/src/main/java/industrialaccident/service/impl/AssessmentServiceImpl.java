@@ -71,7 +71,7 @@ public class AssessmentServiceImpl
     ) throws Exception {
 
         Optional<Assessment> optionalAssessment = assessmentRepository.findById(
-            updateInvestigationCommand.getAssessmentId()
+            updateInvestigationCommand.getId()
         );
 
         if (optionalAssessment.isPresent()) {

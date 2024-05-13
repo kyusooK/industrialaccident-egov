@@ -91,6 +91,6 @@ spring:
 
 api:
   url: 
-    sickLeave: assessment:8083 
+    sickLeave: localhost:8080
 
 

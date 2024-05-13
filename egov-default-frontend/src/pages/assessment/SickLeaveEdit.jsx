@@ -122,16 +122,6 @@ function EgovNoticeEdit(props) {
                         <div className="board_view2">
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">Id</label>
-                                </dt>
-                                <dd>
-                                    <input className="f_input2 w_full" id="id" name="id" type="text"
-                                        onChange={e => setBoardDetail({ ...boardDetail, id: e.target.value })}
-                                        maxLength="60" />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>
                                     <label htmlFor="nttSj">AccessmentId</label>
                                 </dt>
                                 <dd>
@@ -167,46 +157,6 @@ function EgovNoticeEdit(props) {
                                 <dd>
                                     <input className="f_input2 w_full" id="employeeId" name="employeeId" type="text"
                                         onChange={e => setBoardDetail({ ...boardDetail, employeeId: e.target.value })}
-                                        maxLength="60" />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <label htmlFor="nttSj">AverageSalary</label>
-                                </dt>
-                                <dd>
-                                    <input className="f_input2 w_full" id="averageSalary" name="averageSalary" type="text"
-                                        onChange={e => setBoardDetail({ ...boardDetail, averageSalary: e.target.value })}
-                                        maxLength="60" />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <label htmlFor="nttSj">Period</label>
-                                </dt>
-                                <dd>
-                                    <input className="f_input2 w_full" id="period" name="period" type="text"
-                                        onChange={e => setBoardDetail({ ...boardDetail, period: e.target.value })}
-                                        maxLength="60" />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <label htmlFor="nttSj">Status</label>
-                                </dt>
-                                <dd>
-                                    <input className="f_input2 w_full" id="status" name="status" type="text"
-                                        onChange={e => setBoardDetail({ ...boardDetail, status: e.target.value })}
-                                        maxLength="60" />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <label htmlFor="nttSj">Date</label>
-                                </dt>
-                                <dd>
-                                    <input className="f_input2 w_full" id="date" name="date" type="text"
-                                        onChange={e => setBoardDetail({ ...boardDetail, date: e.target.value })}
                                         maxLength="60" />
                                 </dd>
                             </dl>

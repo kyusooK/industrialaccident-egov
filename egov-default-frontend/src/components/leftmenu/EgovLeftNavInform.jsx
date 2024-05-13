@@ -22,9 +22,9 @@ function EgovLeftNavInform() {
         return (
             <div className="nav">
                 <div className="inner">
-                    <h2>진위확인</h2>
+                    <h2>요양급여</h2>
                     <ul className="menu4">
-                        <li><NavLink to="/assessment/assessments" className={({ isActive }) => (isActive ? "cur" : "")}>진위확인</NavLink></li>
+                        <li><NavLink to="/assessment/assessments" className={({ isActive }) => (isActive ? "cur" : "")}>요양급여</NavLink></li>
                     </ul>
                 </div>
             </div>
@@ -58,21 +58,18 @@ function EgovLeftNavInform() {
         return (
             <div className="nav">
                 <div className="inner">
-                    <h2>Statistics</h2>
+                    <h2>산재신청 처리통계</h2>
                     <ul className="menu4">
-                        <li><NavLink to="/statistics/statistics" className={({ isActive }) => (isActive ? "cur" : "")}>Statistics</NavLink></li>
+                        <li><NavLink to="/statistics/statistics" className={({ isActive }) => (isActive ? "cur" : "")}>심사결과 통계</NavLink></li>
                     </ul>
-                </div>
-            </div>
-        );
-    }
-    if (lastSegment === 'notifications'){
-        return (
-            <div className="nav">
-                <div className="inner">
-                    <h2>Notification</h2>
                     <ul className="menu4">
-                        <li><NavLink to="/notification/notifications" className={({ isActive }) => (isActive ? "cur" : "")}>Notification</NavLink></li>
+                        <li>회사별 통계</li>
+                    </ul>
+                    <ul className="menu4">
+                        <li>병원별 통계</li>
+                    </ul>
+                    <ul className="menu4">
+                        <li>날짜별 통계</li>
                     </ul>
                 </div>
             </div>

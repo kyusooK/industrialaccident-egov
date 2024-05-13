@@ -193,26 +193,6 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">Results</label>
-                                </dt>
-                                <dd>
-                                    <input className="f_input2 w_full" id="results" name="results" type="text"
-                                        onChange={e => setBoardDetail({ ...boardDetail, results: e.target.value })}
-                                        maxLength="60" />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>
-                                    <label htmlFor="nttSj">Date</label>
-                                </dt>
-                                <dd>
-                                    <input className="f_input2 w_full" id="date" name="date" type="text"
-                                        onChange={e => setBoardDetail({ ...boardDetail, date: e.target.value })}
-                                        maxLength="60" />
-                                </dd>
-                            </dl>
-                            <dl>
-                                <dt>
                                     <label htmlFor="nttSj">Comments</label>
                                 </dt>
                                 <dd>

@@ -12,25 +12,15 @@ import { default as EgovLeftNav } from 'components/leftmenu/EgovLeftNavInform'
 
 import { itemIdxByPage } from 'utils/calc'
 
-const data = [
+export const options = {
+    title: "처리통계",
+  };
+
+export const data = [
     ["Task", "Hours per Day"],
-    ["Work", 11],
-    ["Eat", 2],
-    ["Commute", 2],
-    ["Watch TV", 2],
-    ["Sleep", 7],
-  ];
-export function App() {
-return (
-    <Chart
-    chartType="PieChart"
-    data={data}
-    options={options}
-    width={"100%"}
-    height={"400px"}
-    />
-);
-}
+    ["승인 처리", 11],
+    ["불승인 처리", 7],
+];
 
 function EgovNoticeList(props) {
 
@@ -114,79 +104,25 @@ function EgovNoticeList(props) {
                 <div className="location">
                     <ul>
                         <li><Link to={URL.MAIN} className="home">Home</Link></li>
-                        <li>산재신청 처리통계</li>
-                        <li>Statistics</li>
+                        <li>심사결과 통계</li>
                     </ul>
                 </div>
                 {/* <!--// Location --> */}
 
                 <div className="layout">
-                    {/* <!-- Navigation --> */}
                     <EgovLeftNav></EgovLeftNav>
-                    {/* <!--// Navigation --> */}
-
                     <div className="contents NOTICE_LIST" id="contents">
-                        {/* <!-- 본문 --> */}
-
                         <div className="top_tit">
-                            <h1 className="tit_1">산재신청 처리통계</h1>
+                            <h1 className="tit_1">심사결과 통계</h1>
                         </div>
-
-                        <h2 className="tit_2">Statistics</h2>
-
-                        {/* <!-- 검색조건 --> */}
-                        <div className="condition">
-                            <ul>
-                                <li className="third_1 L">
-                                    <label className="f_select" htmlFor="sel1">
-                                        <select id="sel1" title="조건" defaultValue={searchCondition.searchCnd} ref={cndRef}
-                                            onChange={e => {
-                                                cndRef.current.value = e.target.value; 
-                                            }}
-                                        >
-                                            <option value="0">제목</option>
-                                            <option value="1">내용</option>
-                                            <option value="2">작성자</option>
-                                        </select>
-                                    </label>
-                                </li>
-                                <li className="third_2 R">
-                                    <span className="f_search w_500">
-                                        <input type="text" name="" defaultValue={searchCondition.searchWrd} placeholder="" ref={wrdRef}
-                                            onChange={e => {
-                                                wrdRef.current.value = e.target.value;
-                                            }}
-                                        />
-                                        <button type="button"
-                                            onClick={() => {
-                                                retrieveList({ ...searchCondition, pageIndex: 1, searchCnd: cndRef.current.value, searchWrd: wrdRef.current.value });
-                                            }}>조회</button>
-                                    </span>
-                                </li>
-                                    <li>
-                                        <Link to="/statistics/StatisticsEdit" state={{bbsId: bbsId}} className="btn btn_blue_h46 pd35">등록</Link>
-                                    </li>
-                            </ul>
-                        </div>
-                        {/* <!--// 검색조건 --> */}
-
-                        {/* <!-- 게시판목록 --> */}
-                        <div className="board_list BRD002">
-                            <div className="head">
-
-                                <span>Id</span>
-                                <span>AccidentId</span>
-                                <span>HospitalCode</span>
-                                <span>BusinessCode</span>
-                                <span>Results</span>
-                                <span>Date</span>
-                            
-                            </div>
-                            <div className="result">
-                                {listTag}
-                            </div>
-                        </div>
-                        {/* <!--// 게시판목록 --> */}
+                        
+                        <Chart
+                            chartType="PieChart"
+                            data={data}
+                            options={options}
+                            width={"100%"}
+                            height={"400px"}
+                            />
 
                         <div className="board_bot">
                             {/* <!-- Paging --> */}

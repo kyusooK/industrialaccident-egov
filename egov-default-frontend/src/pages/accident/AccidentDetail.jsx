@@ -37,6 +37,11 @@ function EgovNoticeDetail(props) {
 
     const [entity, setEntity] = useState("");
 
+    const [key, setKey] = useState('');
+    const [businessCode, setBusinessCode] = useState('');
+    const [employeeId, setEmployeeId] = useState('');
+    const [period, setPeriod] = useState('');
+
     const [masterBoard, setMasterBoard] = useState({});
     const [user, setUser] = useState({});
     const [boardDetail, setBoardDetail] = useState({});
@@ -73,23 +78,10 @@ function EgovNoticeDetail(props) {
         axios.delete(`/accidents/${id}`)
         navigate('/accident/accidents');
     }
-
-    function applyMedicalBenefit(){
-
-        axios.put(`/accidents/${id}/applymedicalbenefit`, {id: entity }) 
-        .then(response => {
-            const resp = response.data
-            if(!resp){
-                navigate({pathname: URL.ERROR}, {state: {msg: resp.resultMessage}});
-            }else{
-                setApplyMedicalBenefitOpen(false);
-                fetchAccident(id);
-            }
-        });
-    }
     function applySickLeaveBenefit(){
+        const data = { id:key, businessCode, employeeId, period };
 
-        axios.put(`/accidents/${id}/applysickleavepay`, {id: entity }) 
+        axios.put(`/accidents/${id}/applysickleavepay`, data) 
         .then(response => {
             const resp = response.data
             if(!resp){
@@ -145,10 +137,6 @@ function EgovNoticeDetail(props) {
                                         <dd>{boardDetail && boardDetail.employeeId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>Name</dt>
-                                        <dd>{boardDetail && boardDetail.name }</dd>
-                                    </dl>
-                                    <dl>
                                         <dt>HospitalCode</dt>
                                         <dd>{boardDetail && boardDetail.hospitalCode }</dd>
                                     </dl>
@@ -168,23 +156,11 @@ function EgovNoticeDetail(props) {
                                         <dt>Status</dt>
                                         <dd>{boardDetail && boardDetail.status }</dd>
                                     </dl>
-                                    <dl>
-                                        <dt>ApplyDt</dt>
-                                        <dd>{boardDetail && boardDetail.applyDt }</dd>
-                                    </dl>
                                 </div>
                             </div>
                             <div className="board_btn_area">
                                 <div style={{ display: "flex", flexDirection: "row"}}>
                                     <div style={{marginTop: "5px"}}>
-                                        <button className="btn btn_blue_h46 w_100"
-                                         onClick={() => {
-                                            if (condition) {  
-                                            setApplyMedicalBenefitOpen(true);
-                                            }
-                                        }}>
-                                            요양급여 신청
-                                        </button>
                                         <button className="btn btn_blue_h46 w_100"
                                          onClick={() => {
                                             if (condition) {  
@@ -209,31 +185,6 @@ function EgovNoticeDetail(props) {
                         </div>
                         {/* <!-- 게시판 상세보기 --> */}
                         <div>
-                            <Dialog open={applyMedicalBenefitopen} onClose={() => setApplyMedicalBenefitOpen(false)}>
-                                <DialogTitle>요양급여 신청</DialogTitle>
-                                <DialogContent>
-                                    <TextField 
-                                        autoFocus
-                                        margin="dense"
-                                        id=""
-                                        label=""
-                                        type="text"
-                                        fullWidth
-                                        value={entity}
-                                        onChange={(e) => setEntity(e.target.value)}
-                                    />
-                                </DialogContent>
-                                <DialogActions>
-                                    <button onClick={() => setApplyMedicalBenefitOpen(false)} className="btn btn_blue_h46 w_100">
-                                        취소
-                                    </button>
-                                    <button onClick={applyMedicalBenefit} className="btn btn_blue_h46 w_100">
-                                    요양급여 신청
-                                    </button>
-                                </DialogActions>
-                            </Dialog>
-                        </div>
-                        <div>
                             <Dialog open={applySickLeaveBenefitopen} onClose={() => setApplySickLeaveBenefitOpen(false)}>
                                 <DialogTitle>휴업급여 신청</DialogTitle>
                                 <DialogContent>
@@ -244,8 +195,38 @@ function EgovNoticeDetail(props) {
                                         label="Id"
                                         type="text"
                                         fullWidth
-                                        value={entity}
-                                        onChange={(e) => setEntity(e.target.value)}
+                                        value={key}
+                                        onChange={(e) => setKey(e.target.value)}
+                                    />
+                                    <TextField 
+                                        autoFocus
+                                        margin="dense"
+                                        id="businessCode"
+                                        label="businessCode"
+                                        type="text"
+                                        fullWidth
+                                        value={businessCode}
+                                        onChange={(e) => setBusinessCode(e.target.value)}
+                                    />
+                                    <TextField 
+                                        autoFocus
+                                        margin="dense"
+                                        id="employeeId"
+                                        label="employeeId"
+                                        type="text"
+                                        fullWidth
+                                        value={employeeId}
+                                        onChange={(e) => setEmployeeId(e.target.value)}
+                                    />
+                                    <TextField 
+                                        autoFocus
+                                        margin="dense"
+                                        id="period"
+                                        label="period"
+                                        type="text"
+                                        fullWidth
+                                        value={period}
+                                        onChange={(e) => setPeriod(e.target.value)}
                                     />
                                 </DialogContent>
                                 <DialogActions>

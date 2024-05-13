@@ -88,9 +88,7 @@ public class AccidentServiceImpl
         if (optionalAccident.isPresent()) {
             Accident accident = optionalAccident.get();
             accident.applySickLeaveBenefit(applySickLeaveBenefitCommand);
-            accidentRepository.save(accident);
-
-            return accident;
+            return accidentRepository.save(accident); 
         } else {
             throw processException("info.nodata.msg");
         }
