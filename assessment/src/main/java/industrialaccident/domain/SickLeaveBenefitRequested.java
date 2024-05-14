@@ -16,7 +16,7 @@ public class SickLeaveBenefitRequested extends AbstractEvent {
     private Long accidentId;
     private String businessCode;
     private String employeeId;
-    private Float averageSalary;
+    private Long averageSalary;
     private Integer period;
     private String status;
     private Date date;

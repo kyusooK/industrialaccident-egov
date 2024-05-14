@@ -144,13 +144,13 @@ function EgovNoticeList(props) {
                             <div className="head">
 
                                 <span>Id</span>
-                                <span>요양급여ID</span>
-                                <span>산재ID</span>
-                                <span>사업코드</span>
+                                <span>요양급여신청코드</span>
+                                <span>산재신청코드</span>
+                                <span>사업장코드</span>
                                 <span>고용인ID</span>
                                 <span>평균임금</span>
                                 <span>기간</span>
-                                <span>상태</span>
+                                <span>진행상태</span>
                             </div>
                             <div className="result">
                                 {listTag}

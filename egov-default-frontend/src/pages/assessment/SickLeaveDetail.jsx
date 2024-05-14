@@ -36,6 +36,9 @@ function EgovNoticeDetail(props) {
 
     const [entity, setEntity] = useState("");
 
+    const [key, setKey] = useState('');
+    const [averageSalary, setAverageSalary] = useState('');
+
     const [masterBoard, setMasterBoard] = useState({});
     const [boardDetail, setBoardDetail] = useState({});
 
@@ -72,8 +75,8 @@ function EgovNoticeDetail(props) {
     }
 
     function applySalary(){
-
-        axios.put(`/sickLeaves/${id}/applysalary`, {id: entity }) 
+        const data = { id:key, averageSalary };
+        axios.put(`/sickLeaves/${id}/applysalary`, data) 
         .then(response => {
             const resp = response.data
             if(!resp){
@@ -134,15 +137,15 @@ function EgovNoticeDetail(props) {
                                         <dd>{id}</dd>
                                     </dl>
                                     <dl>
-                                        <dt>요양급여ID</dt>
+                                        <dt>요양급여심사코드</dt>
                                         <dd>{boardDetail && boardDetail.accessmentId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>산재ID</dt>
+                                        <dt>산재신청코드</dt>
                                         <dd>{boardDetail && boardDetail.accidentId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>사업코드</dt>
+                                        <dt>사업장코드</dt>
                                         <dd>{boardDetail && boardDetail.businessCode }</dd>
                                     </dl>
                                     <dl>
@@ -158,7 +161,7 @@ function EgovNoticeDetail(props) {
                                         <dd>{boardDetail && boardDetail.period }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>상태</dt>
+                                        <dt>진행상태</dt>
                                         <dd>{boardDetail && boardDetail.status }</dd>
                                     </dl>
                                 </div>
@@ -166,21 +169,13 @@ function EgovNoticeDetail(props) {
                             <div className="board_btn_area">
                                 <div style={{ display: "flex", flexDirection: "row"}}>
                                     <div style={{marginTop: "5px"}}>
-                                        <button className="btn btn_blue_h46 w_100"
+                                        <button className="btn btn_blue_h46 w_140"
                                          onClick={() => {
                                             if (condition) {  
                                             setApplySalaryOpen(true);
                                             }
                                         }}>
                                             평균임금 적용
-                                        </button>
-                                        <button className="btn btn_blue_h46 w_100"
-                                         onClick={() => {
-                                            if (condition) {  
-                                            setRequestSickLeaveBenefitOpen(true);
-                                            }
-                                        }}>
-                                            휴업급여요청
                                         </button>
                                     </div>
                                 </div>
@@ -204,12 +199,22 @@ function EgovNoticeDetail(props) {
                                     <TextField 
                                         autoFocus
                                         margin="dense"
-                                        id=""
-                                        label=""
+                                        id="id"
+                                        label="Id"
                                         type="text"
                                         fullWidth
-                                        value={entity}
-                                        onChange={(e) => setEntity(e.target.value)}
+                                        value={key}
+                                        onChange={(e) => setKey(e.target.value)}
+                                    />
+                                    <TextField 
+                                        autoFocus
+                                        margin="dense"
+                                        id="averageSalary"
+                                        label="AverageSalary"
+                                        type="text"
+                                        fullWidth
+                                        value={averageSalary}
+                                        onChange={(e) => setAverageSalary(e.target.value)}
                                     />
                                 </DialogContent>
                                 <DialogActions>
@@ -223,29 +228,6 @@ function EgovNoticeDetail(props) {
                             </Dialog>
                         </div>
                         <div>
-                            <Dialog open={requestSickLeaveBenefitopen} onClose={() => setRequestSickLeaveBenefitOpen(false)}>
-                                <DialogTitle>휴업급여요청</DialogTitle>
-                                <DialogContent>
-                                    <TextField 
-                                        autoFocus
-                                        margin="dense"
-                                        id="id"
-                                        label="Id"
-                                        type="text"
-                                        fullWidth
-                                        value={entity}
-                                        onChange={(e) => setEntity(e.target.value)}
-                                    />
-                                </DialogContent>
-                                <DialogActions>
-                                    <button onClick={() => setRequestSickLeaveBenefitOpen(false)} className="btn btn_blue_h46 w_100">
-                                        취소
-                                    </button>
-                                    <button onClick={requestSickLeaveBenefit} className="btn btn_blue_h46 w_100">
-                                    휴업급여요청
-                                    </button>
-                                </DialogActions>
-                            </Dialog>
                         </div>
                         
                         {/* <!--// 본문 --> */}

@@ -4,7 +4,6 @@ server:
 
 ---
 
-
 keycloak-client:
   server-url: https://9090-kyusook-industrialaccid-aj9l6bkkryp.ws-us110.gitpod.io
   realm: master

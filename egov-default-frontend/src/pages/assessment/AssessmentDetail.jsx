@@ -35,7 +35,9 @@ function EgovNoticeDetail(props) {
     const [updateInvestigationopen, setUpdateInvestigationOpen] = useState(false);
     const condition = true; 
 
-    const [entity, setEntity] = useState("");
+    const [key, setKey] = useState("");
+    const [assessorId, setAssessorId] = useState('');
+    const [comments, setComments] = useState('');
 
     const [masterBoard, setMasterBoard] = useState({});
     const [user, setUser] = useState({});
@@ -73,23 +75,11 @@ function EgovNoticeDetail(props) {
         axios.delete(`/assessments/${id}`)
         navigate('/assessment/assessments');
     }
-
-    function createInvestigation(){
-
-        axios.put(`/assessments/${id}/createinvestigation`, {id: entity }) 
-        .then(response => {
-            const resp = response.data
-            if(!resp){
-                navigate({pathname: URL.ERROR}, {state: {msg: resp.resultMessage}});
-            }else{
-                setCreateInvestigationOpen(false);
-                fetchAssessment(id);
-            }
-        });
-    }
+    
     function updateInvestigation(){
+        const data = { id:key, assessorId, comments };
 
-        axios.put(`/assessments/${id}/update`, {id: entity }) 
+        axios.put(`/assessments/${id}/update`, data) 
         .then(response => {
             const resp = response.data
             if(!resp){
@@ -137,11 +127,11 @@ function EgovNoticeDetail(props) {
                                         <dd>{id}</dd>
                                     </dl>
                                     <dl>
-                                        <dt>산재ID</dt>
+                                        <dt>산재신청코드</dt>
                                         <dd>{boardDetail && boardDetail.accidentId }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>사업코드</dt>
+                                        <dt>사업장코드</dt>
                                         <dd>{boardDetail && boardDetail.businessCode }</dd>
                                     </dl>
                                     <dl>
@@ -161,7 +151,7 @@ function EgovNoticeDetail(props) {
                                         <dd>{boardDetail && boardDetail.doctorNote }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>결과</dt>
+                                        <dt>진행결과</dt>
                                         <dd>{boardDetail && boardDetail.results }</dd>
                                     </dl>
                                     <dl>
@@ -173,15 +163,7 @@ function EgovNoticeDetail(props) {
                             <div className="board_btn_area">
                                 <div style={{ display: "flex", flexDirection: "row"}}>
                                     <div style={{marginTop: "5px"}}>
-                                        <button className="btn btn_blue_h46 w_100"
-                                         onClick={() => {
-                                            if (condition) {  
-                                            setCreateInvestigationOpen(true);
-                                            }
-                                        }}>
-                                            사실조사 생성
-                                        </button>
-                                        <button className="btn btn_blue_h46 w_100"
+                                        <button className="btn btn_blue_h46 w_140"
                                          onClick={() => {
                                             if (condition) {  
                                             setUpdateInvestigationOpen(true);
@@ -205,43 +187,38 @@ function EgovNoticeDetail(props) {
                         </div>
                         {/* <!-- 게시판 상세보기 --> */}
                         <div>
-                            <Dialog open={createInvestigationopen} onClose={() => setCreateInvestigationOpen(false)}>
-                                <DialogTitle>사실조사 생성</DialogTitle>
-                                <DialogContent>
-                                    <TextField 
-                                        autoFocus
-                                        margin="dense"
-                                        id=""
-                                        label=""
-                                        type="text"
-                                        fullWidth
-                                        value={entity}
-                                        onChange={(e) => setEntity(e.target.value)}
-                                    />
-                                </DialogContent>
-                                <DialogActions>
-                                    <button onClick={() => setCreateInvestigationOpen(false)} className="btn btn_blue_h46 w_100">
-                                        취소
-                                    </button>
-                                    <button onClick={createInvestigation} className="btn btn_blue_h46 w_100">
-                                    사실조사 생성
-                                    </button>
-                                </DialogActions>
-                            </Dialog>
-                        </div>
-                        <div>
                             <Dialog open={updateInvestigationopen} onClose={() => setUpdateInvestigationOpen(false)}>
                                 <DialogTitle>사실조사 판정</DialogTitle>
                                 <DialogContent>
                                     <TextField 
                                         autoFocus
                                         margin="dense"
-                                        id=""
-                                        label=""
+                                        id="id"
+                                        label="Id"
                                         type="text"
                                         fullWidth
-                                        value={entity}
-                                        onChange={(e) => setEntity(e.target.value)}
+                                        value={key}
+                                        onChange={(e) => setKey(e.target.value)}
+                                    />
+                                    <TextField 
+                                        autoFocus
+                                        margin="dense"
+                                        id="assessorId"
+                                        label="AssessorId"
+                                        type="text"
+                                        fullWidth
+                                        value={assessorId}
+                                        onChange={(e) => setAssessorId(e.target.value)}
+                                    />
+                                    <TextField 
+                                        autoFocus
+                                        margin="dense"
+                                        id="comments"
+                                        label="Comment"
+                                        type="text"
+                                        fullWidth
+                                        value={comments}
+                                        onChange={(e) => setComments(e.target.value)}
                                     />
                                 </DialogContent>
                                 <DialogActions>

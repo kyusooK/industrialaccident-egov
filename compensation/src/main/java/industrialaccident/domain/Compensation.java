@@ -25,7 +25,7 @@ public class Compensation {
 
     private String employeeId;
 
-    private Float amount;
+    private Long amount;
 
     private String method;
 
@@ -58,16 +58,12 @@ public class Compensation {
     public void createCompensation(
         CreateCompensationCommand createCompensationCommand
     ) {
-        Compensation compensation = new Compensation();
-
-        compensation.setSickLeaveId(createCompensationCommand.getSickLeaveId());
-        compensation.setAssessmentId(createCompensationCommand.getAssessmentId());
-        compensation.setAccidentId(createCompensationCommand.getAccidentId());
-        compensation.setEmployeeId(createCompensationCommand.getEmployeeId());
-        compensation.setAmount(createCompensationCommand.getAverageSalary());
-        compensation.setStatus("보상처리 접수됨");
-
-        repository().save(compensation);
+        this.setSickLeaveId(createCompensationCommand.getSickLeaveId());
+        this.setAssessmentId(createCompensationCommand.getAssessmentId());
+        this.setAccidentId(createCompensationCommand.getAccidentId());
+        this.setEmployeeId(createCompensationCommand.getEmployeeId());
+        this.setAmount(createCompensationCommand.getAverageSalary());
+        this.setStatus("보상처리 접수됨");
 
         CompensationCreated compensationCreated = new CompensationCreated(this);
         compensationCreated.publishAfterCommit();

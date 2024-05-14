@@ -18,7 +18,7 @@ body {min-width: 1400px;}
 .header .gnb ul {font-size: 0; text-align: center;}
 .header .gnb ul::after {content: ""; display: block; clear: both;}
 .header .gnb ul li {float: left;}
-.header .gnb ul li + li {margin-left: 98px;}
+.header .gnb ul li + li {margin-left: 40px;}
 .header .gnb ul li a {color: #666; font-size: 20px; font-weight: 700; letter-spacing: -0.25px;}
 .header .gnb ul li a.cur {color: #222;}
 
@@ -50,10 +50,10 @@ body {min-width: 1400px;}
 .c_wrap .layout {display: table; width: 100%; table-layout: fixed;}
 
 /* sub navigation */
-.c_wrap .layout .nav {display: table-cell; width: 260px; vertical-align: top;}
+.c_wrap .layout .nav {display: table-cell; width: 200px; vertical-align: top;}
 .c_wrap .layout .nav .inner {border: 1px solid #dde2e5; border-radius: 10px;}
-.c_wrap .layout .nav h2 {padding: 35px 30px 26px 30px;  border-bottom: 4px solid #dde2e5; color: #222; font-size: 24px;}
-.c_wrap .layout .nav ul {padding: 26px 30px 27px 30px;}
+.c_wrap .layout .nav h2 {padding: 20px;  border-bottom: 4px solid #dde2e5; color: #222; font-size: 24px;}
+.c_wrap .layout .nav ul {padding: 20px;}
 .c_wrap .layout .nav ul li + li {margin-top: 27px;}
 .c_wrap .layout .nav ul li a {display: block; position: relative; color: #666; font-size: 18px;}
 .c_wrap .layout .nav ul li a:hover::after {content: ""; display: block; position: absolute; right: 0px; top: 50%; transform: translateY(-50%); width: 9px; height: 15px; background: url(css/images/ico_arrow_r_gray_9x15.png) no-repeat;}

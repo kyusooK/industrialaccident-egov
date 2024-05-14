@@ -129,7 +129,7 @@ function EgovNoticeDetail(props) {
                                         <dd>{id}</dd>
                                     </dl>
                                     <dl>
-                                        <dt>사업코드</dt>
+                                        <dt>사업장코드</dt>
                                         <dd>{boardDetail && boardDetail.businessCode }</dd>
                                     </dl>
                                     <dl>
@@ -145,7 +145,7 @@ function EgovNoticeDetail(props) {
                                         <dd>{boardDetail && boardDetail.period }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>의사 소견서</dt>
+                                        <dt>의사소견서</dt>
                                         <dd>{boardDetail && boardDetail.doctorNote }</dd>
                                     </dl>
                                     <dl>
@@ -153,7 +153,7 @@ function EgovNoticeDetail(props) {
                                         <dd>{boardDetail && boardDetail.accidentType }</dd>
                                     </dl>
                                     <dl>
-                                        <dt>상태</dt>
+                                        <dt>진행상태</dt>
                                         <dd>{boardDetail && boardDetail.status }</dd>
                                     </dl>
                                 </div>
@@ -161,7 +161,7 @@ function EgovNoticeDetail(props) {
                             <div className="board_btn_area">
                                 <div style={{ display: "flex", flexDirection: "row"}}>
                                     <div style={{marginTop: "5px"}}>
-                                        <button className="btn btn_blue_h46 w_100"
+                                        <button className="btn btn_blue_h46 w_140"
                                          onClick={() => {
                                             if (condition) {  
                                             setApplySickLeaveBenefitOpen(true);

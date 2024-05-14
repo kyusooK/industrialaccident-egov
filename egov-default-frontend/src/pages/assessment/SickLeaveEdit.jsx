@@ -122,7 +122,7 @@ function EgovNoticeEdit(props) {
                         <div className="board_view2">
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">요양급여ID</label>
+                                    <label htmlFor="nttSj">요양급여심사코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="accessmentId" name="accessmentId" type="text"
@@ -132,7 +132,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">산재ID</label>
+                                    <label htmlFor="nttSj">산재신청코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="accidentId" name="accidentId" type="text"
@@ -142,7 +142,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">사업코드</label>
+                                    <label htmlFor="nttSj">사업장코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="businessCode" name="businessCode" type="text"

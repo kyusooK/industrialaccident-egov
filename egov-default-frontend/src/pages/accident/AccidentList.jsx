@@ -144,7 +144,7 @@ function EgovNoticeList(props) {
                             <div className="head">
 
                                 <span>Id</span>
-                                <span>사업코드</span>
+                                <span>사업장코드</span>
                                 <span>고용인ID</span>
                                 <span>병원코드</span>
                                 <span>기간</span>

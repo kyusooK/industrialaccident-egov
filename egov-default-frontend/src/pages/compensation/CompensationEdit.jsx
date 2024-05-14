@@ -122,7 +122,7 @@ function EgovNoticeEdit(props) {
                         <div className="board_view2">
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">SickLeaveId</label>
+                                    <label htmlFor="nttSj">휴업급여신청코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="sickLeaveId" name="sickLeaveId" type="text"
@@ -132,7 +132,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">AssessmentId</label>
+                                    <label htmlFor="nttSj">요양급여심사코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="assessmentId" name="assessmentId" type="text"
@@ -142,7 +142,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">AccidentId</label>
+                                    <label htmlFor="nttSj">산재신청코드</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="accidentId" name="accidentId" type="text"
@@ -152,7 +152,7 @@ function EgovNoticeEdit(props) {
                             </dl>
                             <dl>
                                 <dt>
-                                    <label htmlFor="nttSj">EmployeeId</label>
+                                    <label htmlFor="nttSj">고용인ID</label>
                                 </dt>
                                 <dd>
                                     <input className="f_input2 w_full" id="employeeId" name="employeeId" type="text"

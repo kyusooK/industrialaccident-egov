@@ -38,19 +38,16 @@ public class PolicyHandler {
         );
 
         CreateCompensationCommand createCompensationCommand = new CreateCompensationCommand();
+        createCompensationCommand.setSickLeaveId(event.getId());
+        createCompensationCommand.setAssessmentId(event.getAccessmentId());
+        createCompensationCommand.setAccidentId(event.getAccidentId());
+        createCompensationCommand.setEmployeeId(event.getEmployeeId());
+        createCompensationCommand.setAverageSalary(event.getAverageSalary());
 
-        compensationRepository.findById(event.getId()
-        
-        ).ifPresent(compensation->{
-            createCompensationCommand.setSickLeaveId(event.getId());
-            createCompensationCommand.setAssessmentId(event.getAccessmentId());
-            createCompensationCommand.setAccidentId(event.getAccidentId());
-            createCompensationCommand.setEmployeeId(event.getEmployeeId());
-            createCompensationCommand.setAverageSalary(event.getAverageSalary());
+        Compensation compensation = new Compensation();
+        compensation.createCompensation(createCompensationCommand);
+        compensationRepository.save(compensation);
 
-            compensation.createCompensation(createCompensationCommand);
-
-        });
 
     }
 }

@@ -16,7 +16,8 @@ function EgovHeader() {
 
     const navigate = useNavigate();
 
-    const role = localStorage.getItem('username');
+    const role = localStorage.getItem('roles');
+    const userName = localStorage.getItem('username');
 
     const logInHandler = () => { // 로그인 정보 없을 시
         
@@ -76,15 +77,15 @@ function EgovHeader() {
                         <li><NavLink to="/accident/accidents" className={({ isActive }) => (isActive ? "cur" : "")}>산재접수</NavLink></li>
 
 
-                        <li>{role === 'admin' && (<NavLink to="/assessment/assessments" className={({ isActive }) => (isActive ? "cur" : "")}>요양급여</NavLink>)}</li>
+                        <li>{!role.includes('CUSTOMER') && (<NavLink to="/assessment/assessments" className={({ isActive }) => (isActive ? "cur" : "")}>요양급여</NavLink>)}</li>
 
-                        <li>{role === 'admin' && (<NavLink to="/assessment/sickLeaves" className={({ isActive }) => (isActive ? "cur" : "")}>휴업급여</NavLink>)}</li>
+                        <li>{!role.includes('CUSTOMER') && (<NavLink to="/assessment/sickLeaves" className={({ isActive }) => (isActive ? "cur" : "")}>휴업급여</NavLink>)}</li>
 
 
                         <li><NavLink to="/compensation/compensations" className={({ isActive }) => (isActive ? "cur" : "")}>보상지급</NavLink></li>
 
 
-                        <li>{role === 'admin' && (<NavLink to="/statistics/statistics" className={({ isActive }) => (isActive ? "cur" : "")}>산재신청 처리통계</NavLink>)}</li>
+                        <li>{!role.includes('CUSTOMER') && (<NavLink to="/statistics/statistics" className={({ isActive }) => (isActive ? "cur" : "")}>처리통계</NavLink>)}</li>
 
                         <li><NavLink to={URL.INFORM} className={({ isActive }) => (isActive ? "cur" : "")}>알림마당</NavLink></li>
                         {sessionUserSe ==='USR' &&
@@ -107,7 +108,7 @@ function EgovHeader() {
                         <button onClick={logInHandler} className="btn login">로그인</button>
                     }
                     {!sessionUserId && role &&
-                        <div>{role}님 환영합니다.</div>
+                        <div>{userName}님 환영합니다.</div>
                     }
                         
                 </div>

@@ -60,13 +60,13 @@ function EgovLeftNavInform() {
                 <div className="inner">
                     <h2>산재신청 처리통계</h2>
                     <ul className="menu4">
-                        <li><NavLink to="/statistics/statistics" className={({ isActive }) => (isActive ? "cur" : "")}>심사결과 통계</NavLink></li>
+                        <li style={{marginBottom : '-15px'}}><NavLink to="/statistics/statistics" className={({ isActive }) => (isActive ? "cur" : "")}>심사결과 통계</NavLink></li>
                     </ul>
                     <ul className="menu4">
-                        <li>회사별 통계</li>
+                        <li style={{marginBottom : '-15px'}}>회사별 통계</li>
                     </ul>
                     <ul className="menu4">
-                        <li>병원별 통계</li>
+                        <li style={{marginBottom : '-15px'}}>병원별 통계</li>
                     </ul>
                     <ul className="menu4">
                         <li>날짜별 통계</li>
