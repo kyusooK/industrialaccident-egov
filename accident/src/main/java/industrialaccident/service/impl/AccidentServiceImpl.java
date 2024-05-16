@@ -77,18 +77,15 @@ public class AccidentServiceImpl
     }
 
     @Override
-    public Accident applySickLeaveBenefit(
-        ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
-    ) throws Exception {
-
-        Optional<Accident> optionalAccident = accidentRepository.findById(
-            applySickLeaveBenefitCommand.getId()
-        );
+    public Accident applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) throws Exception {
+        Optional<Accident> optionalAccident = accidentRepository.findById(applySickLeaveBenefitCommand.getAccidentId());
 
         if (optionalAccident.isPresent()) {
             Accident accident = optionalAccident.get();
+
+            // business Logic....
             accident.applySickLeaveBenefit(applySickLeaveBenefitCommand);
-            return accidentRepository.save(accident); 
+            return accidentRepository.save(accident);
         } else {
             throw processException("info.nodata.msg");
         }

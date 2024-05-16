@@ -10,26 +10,19 @@ import lombok.Data;
 @Entity
 @Table(name = "SickLeave_table")
 @Data
+//<<< DDD / Aggregate Root
 public class SickLeave {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private Long accessmentId;
-
     private Long accidentId;
-
     private String businessCode;
-
     private String employeeId;
-
-    private Long averageSalary;
-
+    private Float averageSalary;
     private Integer period;
-
     private String status;
-
     private Date date;
 
     @PostPersist
@@ -42,39 +35,50 @@ public class SickLeave {
         return sickLeaveRepository;
     }
 
+    // @PostLoad
+    // public void makeDelay(){
+    //     try {
+    //         Thread.currentThread().sleep((long) (400 + Math.random() * 220));
+    //     } catch (InterruptedException e) {
+    //         e.printStackTrace();
+    //     }
+    // }
+   
     public void applySalary(ApplySalaryCommand applySalaryCommand) {
-        
-        this.setAverageSalary(applySalaryCommand.getAverageSalary());
-
-        AverageSalaryApplied averageSalaryApplied = new AverageSalaryApplied(this);
+        //implement business logic here:
+        AverageSalaryApplied averageSalaryApplied = new AverageSalaryApplied(
+            this
+        );
         averageSalaryApplied.publishAfterCommit();
     }
 
-    public void createSickLeaveBenefit(
-        CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand) {
-        
+    //<<< Clean Arch / Port Method
+    public void createSickLeaveBenefit(CreateSickLeaveBenefitCommand createSickLeaveBenefitCommand) {
+        //implement business logic here:
         this.setAccessmentId(createSickLeaveBenefitCommand.getAccessmentId());
         this.setAccidentId(createSickLeaveBenefitCommand.getAccidentId());
         this.setBusinessCode(createSickLeaveBenefitCommand.getBusinessCode());
         this.setEmployeeId(createSickLeaveBenefitCommand.getEmployeeId());
-        this.setStatus("급여처리 생성됨");
+        this.setStatus("급여처리생성됨");
 
         SickLeaveBenefitCreated sickLeaveBenefitCreated = new SickLeaveBenefitCreated(this);
         sickLeaveBenefitCreated.publishAfterCommit();
     }
 
+    //<<< Clean Arch / Port Method
     public void requestSickLeaveBenefit(
-        RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand) {
-
-        this.setAccessmentId(requestSickLeaveBenefitCommand.getId());
-        this.setAccidentId(requestSickLeaveBenefitCommand.getId());
-        this.setBusinessCode(requestSickLeaveBenefitCommand.getBusinessCode());
-        this.setEmployeeId(requestSickLeaveBenefitCommand.getEmployeeId());
-        this.setPeriod(requestSickLeaveBenefitCommand.getPeriod());
-        this.setStatus("휴업급여 요청됨");
+        RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand
+    ) {
+        //implement business logic here:
+        this.setEmployeeId(employeeId);
+        this.setBusinessCode(businessCode);
+        this.setPeriod(period);
+        this.setStatus("휴업급여요청됨");
 
         SickLeaveBenefitRequested sickLeaveBenefitRequested = new SickLeaveBenefitRequested(this);
         sickLeaveBenefitRequested.publishAfterCommit();
     }
+    //>>> Clean Arch / Port Method
 
 }
+//>>> DDD / Aggregate Root

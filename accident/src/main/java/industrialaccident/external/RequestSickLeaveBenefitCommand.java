@@ -11,7 +11,5 @@ public class RequestSickLeaveBenefitCommand {
     private String employeeId;
     private String businessCode;
     private Integer period;
-
-    @Id
-    private Long id;
+    private Long sickLeaveId;
 }

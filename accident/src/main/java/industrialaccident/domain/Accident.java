@@ -8,6 +8,9 @@ import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
+import org.springframework.beans.BeansException;
+
+
 @Entity
 @Table(name = "Accident_table")
 @Data
@@ -66,28 +69,30 @@ public class Accident {
         this.setStatus("요양급여신청됨");
     }
 
-    public void applySickLeaveBenefit(
-        ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand
-    ) {
-        this.setBusinessCode(applySickLeaveBenefitCommand.getBusinessCode());
+    public void applySickLeaveBenefit(ApplySickLeaveBenefitCommand applySickLeaveBenefitCommand) throws BeansException, Exception {
+        //business logic
         this.setEmployeeId(applySickLeaveBenefitCommand.getEmployeeId());
         this.setPeriod(applySickLeaveBenefitCommand.getPeriod());
-        this.setStatus("휴업급여 신칭됨");
+        this.setStatus("휴업급여신청됨");
 
-        SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(this);
-        sickLeaveBenefitApplied.publishAfterCommit();
-
-
-        industrialaccident.external.RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand = new industrialaccident.external.RequestSickLeaveBenefitCommand();
-        
-        requestSickLeaveBenefitCommand.setId(getId());
-        requestSickLeaveBenefitCommand.setBusinessCode(getBusinessCode());
-        requestSickLeaveBenefitCommand.setEmployeeId(getEmployeeId());
-        requestSickLeaveBenefitCommand.setPeriod(getPeriod());
+        //Following code causes dependency to external APIs
+        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
+        industrialaccident.external.RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand = 
+        new industrialaccident.external.RequestSickLeaveBenefitCommand();
+        // mappings goes here
+        requestSickLeaveBenefitCommand.setSickLeaveId(applySickLeaveBenefitCommand.getSickLeaveId());
+        requestSickLeaveBenefitCommand.setEmployeeId(applySickLeaveBenefitCommand.getEmployeeId());
+        requestSickLeaveBenefitCommand.setBusinessCode(applySickLeaveBenefitCommand.getBusinessCode());
+        requestSickLeaveBenefitCommand.setPeriod(applySickLeaveBenefitCommand.getPeriod());
 
         AccidentApplication.applicationContext
             .getBean(industrialaccident.external.SickLeaveService.class)
-            .requestSickLeaveBenefit(getId(), requestSickLeaveBenefitCommand);
+            .requestSickLeaveBenefit(applySickLeaveBenefitCommand.getSickLeaveId(), requestSickLeaveBenefitCommand);
+
+        // publish domain Event
+        SickLeaveBenefitApplied sickLeaveBenefitApplied = new SickLeaveBenefitApplied(this);
+        sickLeaveBenefitApplied.setSickLeaveId(applySickLeaveBenefitCommand.getSickLeaveId());
+        sickLeaveBenefitApplied.publishAfterCommit();
     }
 
 }
