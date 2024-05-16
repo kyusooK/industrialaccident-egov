@@ -79,7 +79,7 @@ function EgovNoticeDetail(props) {
         navigate('/accident/accidents');
     }
     function applySickLeaveBenefit(){
-        const data = { id:key, businessCode, employeeId, period };
+        const data = { accidentId:key, businessCode, employeeId, period };
 
         axios.put(`/accidents/${id}/applysickleavepay`, data) 
         .then(response => {

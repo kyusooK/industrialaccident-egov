@@ -32,6 +32,7 @@ public class ResourceSecurityConfig {
                 exchange
                     // .antMatchers("/orders/placeOrder**").hasRole("CUSTOMER")	// You can protect resource here, or each Method Level
                     // .antMatchers("/orders/manageOrder**").hasRole("ADMIN")
+                    .antMatchers("/sickLeaves/**").permitAll()
                     .anyRequest()
                     .authenticated()
             )
