@@ -19,7 +19,7 @@ public class SecurityConfiguration {
             .csrf()
             .disable()
             .authorizeExchange()
-            .pathMatchers("/login/**", "/logout**", "/products/**")
+            .pathMatchers("/login/**", "/logout**", "/accidents/*", "/assessments/*")
             .permitAll()
             .anyExchange()
             .authenticated()

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@FeignClient(name = "sickLeave", url = "${api.url.sickLeave}")
+@FeignClient(name = "assessment", url = "${api.url.assessment}")
 public interface SickLeaveService {
     
     @RequestMapping(
@@ -17,7 +17,6 @@ public interface SickLeaveService {
     )
     public void requestSickLeaveBenefit(
         @PathVariable("id") Long id,
-        @RequestBody RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand,
-        @RequestHeader("Authorization") String authToken
+        @RequestBody RequestSickLeaveBenefitCommand requestSickLeaveBenefitCommand
     );
 }

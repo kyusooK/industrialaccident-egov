@@ -13,4 +13,8 @@ public class CreateCompensationCommand {
     private String employeeId;
     private Long averageSalary;
     private Integer period;
+    public void setAverageSalary(Object averageSalary2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAverageSalary'");
+    }
 }
