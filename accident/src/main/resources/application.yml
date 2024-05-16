@@ -91,6 +91,6 @@ spring:
 
 api:
   url:
-    assessment:8080
+      assessment: assessment:8080
 
 
