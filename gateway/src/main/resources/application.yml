@@ -5,7 +5,7 @@ server:
 ---
 
 keycloak-client:
-  server-url: https://9090-kyusook-industrialaccid-aj9l6bkkryp.ws-us110.gitpod.io
+  server-url: https://9090-kyusook-industrialaccid-aj9l6bkkryp.ws-us114.gitpod.io
   realm: master
 
 spring:
@@ -62,7 +62,7 @@ spring:
           keycloak:
             client-id: egov
             client-secret:
-            redirect-uri: https://8088-kyusook-industrialaccid-aj9l6bkkryp.ws-us110.gitpod.io/login/oauth2/code/egov
+            redirect-uri: https://8088-kyusook-industrialaccid-aj9l6bkkryp.ws-us114.gitpod.io/login/oauth2/code/egov
             authorization-grant-type: authorization_code
             scope: openid
       resourceserver:

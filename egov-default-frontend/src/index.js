@@ -8,7 +8,7 @@ import Keycloak from 'keycloak-js';
 const root = createRoot(document.getElementById("root"));
 
 const keycloak = new Keycloak({
-  url: 'https://9090-kyusook-industrialaccid-aj9l6bkkryp.ws-us110.gitpod.io/',
+  url: 'https://9090-kyusook-industrialaccid-aj9l6bkkryp.ws-us114.gitpod.io/',
   realm: 'master',
   clientId: 'egov',
   onLoad: 'login-required'
